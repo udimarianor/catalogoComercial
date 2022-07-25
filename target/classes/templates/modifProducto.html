@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head th:insert="fragments/head :: head">
+	<script>
+        // Get all elements with class="closebtn"
+        var close = document.getElementsByClassName("closebtn");
+        var i;
+
+        // Loop through all close buttons
+        for (i = 0; i < close.length; i++) {
+            // When someone clicks on a close button
+            close[i].onclick = function () {
+
+                // Get the parent of <span class="closebtn"> (<div class="alert">)
+                var div = this.parentElement;
+
+                // Set the opacity of div to 0 (transparent)
+                div.style.opacity = "0";
+
+                // Hide the div after 600ms (the same amount of milliseconds it takes to fade out)
+                setTimeout(function () {
+                    div.style.display = "none";
+                }, 600);
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+    <!-- Barra de navegación (anclado al inicio) -->
+    <div th:insert="fragments/header :: header"></div>
+
+	<div class="w3-container w3-display-container w3-padding-64" style="min-height: 55vw; margin-top: 50px; " id="home">
+        <div class="w3-display-middle" style="min-width: 320px; max-width: 480px;">
+
+
+            <form th:action="@{/producto/guardarModif}" method="POST" th:object="${producto}">
+
+                <div th:if="${error != null}" class="alert-red">
+                    <span class="closebtn" onclick="this.parentElement.style.display = 'none';">&times;</span>
+                    <strong th:text="${error}"></strong>
+                </div>
+                <div th:if="${confirmacion != null}" class="alert-green">
+                    <span class="closebtn" onclick="this.parentElement.style.display = 'none';">&times;</span>
+                    <strong th:text="${confirmacion}"></strong>
+                </div>
+				<input type="hidden" th:field="*{Id}">
+                <label for="descripcion"> Descripcion</label>
+                <input class="w3-input w3-animate-input" type="text" style="width:200px" required name="descripcion"
+                th:field="*{descripcion}"><br>
+
+                <label for="detalle"> Detalle</label>
+                <input class="w3-input w3-animate-input" type="text" style="width:200px" required name="detalle"
+                       th:field="*{detalle}"><br>
+
+                <label for="categoria"> Categoria</label>
+                <input class="w3-input w3-animate-input" list="categor" style="width:200px" required name="categoria"
+                       th:field="*{categoria}">
+                <datalist id="categor">
+                	<option th:each="categ : ${categorias}" th:text="${categ}"
+								th:value="${categ}"></option>
+                </datalist><br>
+                
+                <input name="usuario" type="hidden" th:value="${session.usuariosession.usuario}">
+
+                <label for="empresa"> Empresa</label>
+                <input class="w3-input w3-animate-input" list="empresa" style="width:200px" required name="empresa"
+                       th:field="*{empresa}">
+                <datalist id="empresa">
+                	<option th:each="empresa : ${empresas}" th:text="${empresa}"
+								th:value="${empresa}"></option>
+                </datalist><br>
+                
+                <label for="precio"> Precio</label>
+                <input class="w3-input w3-animate-input" step="0.5" type="number" style="width:200px" 
+                       th:field="*{precio}" required name="precio"><br>
+                
+                <label for="imagen"> URL de Imagen</label>
+                <input class="w3-input w3-animate-input" type="text" style="width:200px" required name="foto"
+                       th:field="*{foto}"><br>
+
+                <input class="w3-bar-item w3-button w3-light-grey w3-btn w3-round-xxlarge" value="Guardar cambios"
+                       type="submit">
+            </form>
+            
+            <a style="margin-top: 15px;" th:href="@{/producto/baja/}+${producto.id}" method="GET"
+            class="w3-bar-item w3-button w3-light-grey w3-hover-red w3-btn w3-round-xxlarge">Dar de baja</a>
+        </div>
+    </div>
+        
+    <!-- Pié de la página -->
+    <footer th:insert="fragments/footer :: footer" class="w3-padding-64 w3-light-grey w3-small w3-center" id="footer">
+    </footer>
+</body>
+
+</html>

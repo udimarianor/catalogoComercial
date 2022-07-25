@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <head th:insert="fragments/head :: head">
+        <script>
+            // Get all elements with class="closebtn"
+            var close = document.getElementsByClassName("closebtn");
+            var i;
+
+            // Loop through all close buttons
+            for (i = 0; i < close.length; i++) {
+                // When someone clicks on a close button
+                close[i].onclick = function () {
+
+                    // Get the parent of <span class="closebtn"> (<div class="alert">)
+                    var div = this.parentElement;
+
+                    // Set the opacity of div to 0 (transparent)
+                    div.style.opacity = "0";
+
+                    // Hide the div after 600ms (the same amount of milliseconds it takes to fade out)
+                    setTimeout(function () {
+                        div.style.display = "none";
+                    }, 600);
+                }
+            }
+        </script>
+        <style>
+            .alert {
+                opacity: 1;
+                transition: opacity 0.6s; /* 600ms to fade out */
+            }
+        </style>
+    </head>
+
+
+    <body>
+
+        <div th:insert="fragments/header :: header"></div>
+
+        <!-- Div del cuerpo de la página -->
+        <div class="w3-container w3-display-container w3-padding-64" style="min-height: 70vw; margin-top: 50px; " id="home">
+            <div class="w3-display-middle" style="min-width: 320px; max-width: 480px;">
+
+
+                <form th:action="@{/usuario/guardar}" method="POST">
+
+                    <div th:if="${error != null}" class="alert-red">
+                        <span class="closebtn" onclick="this.parentElement.style.display = 'none';">&times;</span>
+                        <strong th:text="${error}"></strong>
+                    </div>
+                    <div th:if="${confirmacion != null}" class="alert-green">
+                        <span class="closebtn" onclick="this.parentElement.style.display = 'none';">&times;</span>
+                        <strong th:text="${confirmacion}"></strong>
+                    </div>
+
+                    <label for="nombre"> Nombre</label>
+                    <input class="w3-input w3-animate-input" type="text" style="width:135px" required name="nombre"><br>
+
+                    <label for="apellido"> Apellido</label>
+                    <input class="w3-input w3-animate-input" type="text" style="width:135px" required name="apellido"><br>
+
+                    <label for="nombreUsuario"> Nombre de usuario</label>
+                    <input class="w3-input w3-animate-input" type="text" style="width:135px" required name="usuario"><br>
+
+                    <Label for="contra1"> Contraseña </Label>
+                    <input class="w3-input w3-animate-input" type="password" id="contra1" oninput="validarContras()"
+                           style="width:135px" required name="contrasenia"><br>
+
+                    <Label for="contra2"> Vuelva a tipear su contraseña. por favor </Label>
+                    <input class="w3-input w3-animate-input" type="password" id="contra2" oninput="validarContras()"
+                           style="width:135px" required name="contrasenia1"><br>
+
+                    <label for="pregunta">Elija su pregunta secreta</label>
+                    <input class="w3-input w3-animate-input" list="preguntas" name="nomeinteresa" id="pregunta">
+                    <datalist id="preguntas">
+                        <option value="¿Cómo se llama tu mascota?">
+                        <option value="¿Calle de tu primera casa?">
+                        <option value="¿Jugador que mas puntos te dió en el gran DT?">
+                        <option value="¿Usuario de homebanking y contraseña?">
+                        <option value="Mirá que é re seguro ameoooooo">
+                    </datalist><br>
+                
+                    <input class="w3-input w3-animate-input" type="text" id="respuesta"
+                           style="width:135px" required name="pregunta" placeholder="La respuesta aquí"><br>
+
+                    <label for="email">Correo electrónico</label>
+                    <input class="w3-input w3-animate-input" type="email" style="width:135px" required name="correo"><br>
+
+                    <input class="w3-check" type="checkbox" required>
+                    <label for="confir"> No soy un robot </label> <br> <br> <br>
+
+                    <input class="w3-bar-item w3-button w3-light-grey w3-btn w3-round-xxlarge" value="Guardar usuario"
+                           type="submit">
+                </form>
+            </div>
+        </div>
+
+
+
+        <!-- Pié de la página -->
+        <footer th:insert="fragments/footer :: footer" class="w3-padding-64 w3-light-grey w3-small w3-center" id="footer">
+        </footer>
+
+
+
+        <script>
+            function validarContras() {
+                let contra1 = document.getElementById("contra1");
+                let contra2 = document.getElementById("contra2");
+                let enviar = document.getElementById("enviar");
+                console.log({contra1: contra1.value, contra2: contra2.value})
+                if (contra1.value != contra2.value) {
+                    contra1.classList.remove("w3-green")
+                    contra2.classList.remove("w3-green")
+                    contra1.classList.add("w3-red")
+                    contra2.classList.add("w3-red")
+                    enviar.disabled = true;
+
+                } else {
+                    contra1.classList.remove("w3-red")
+                    contra2.classList.remove("w3-red")
+                    contra1.classList.add("w3-green")
+                    contra2.classList.add("w3-green")
+                    enviar.disabled = false;
+                }
+            }
+
+        </script>
+
+    </body>
+
+    <script>
+        function validarContras() {
+            let contra1 = document.getElementById("contra1");
+            let contra2 = document.getElementById("contra2");
+            // terminar MAÑANAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+            console.log({contra1: contra1.value, contra2: contra2.value})
+            if (contra1.value != contra2.value) {
+                contra1.classList.remove("w3-green")
+                contra2.classList.remove("w3-green")
+                contra1.classList.add("w3-red")
+                contra2.classList.add("w3-red")
+
+            } else {
+                contra1.classList.remove("w3-red")
+                contra2.classList.remove("w3-red")
+                contra1.classList.add("w3-greem")
+                contra2.classList.add("w3-green")
+            }
+        }
+
+    </script>
+
+
+</body>
+
+
+</html>

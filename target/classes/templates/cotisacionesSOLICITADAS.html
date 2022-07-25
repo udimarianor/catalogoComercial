@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<title>NombreEmpresa :: Plantilla</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<head>
+    <style>
+        body,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: "Raleway", sans-serif
+        }
+
+        body,
+        html {
+            height: 100%;
+            line-height: 1.8;
+        }
+
+        .w3-bar .w3-button {
+            padding: 16px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Barra de navegación (anclado al inicio) -->
+    <div class="w3-top">
+        <div class="w3-bar w3-white w3-card" id="myNavbar">
+            <a href="#home" class="w3-bar-item w3-button w3-wide">Imagen logo</a>
+            <!-- Enlaces de la derecha -->
+            <div class="w3-right w3-hide-small">
+                <a onclick="document.getElementById('id01').style.display='block'" class="w3-bar-item w3-button">abre
+                    modal</a>
+                <a href="catalogo" class="w3-bar-item w3-button">Catalogo</a>
+                <a href="contacto" class="w3-bar-item w3-button">Contacto</a>
+                <a href="ingreso" class="w3-bar-item w3-button"><i class="fa fa-sign-in"></i> Ingreso</a>
+                <a href="registro" class="w3-bar-item w3-button"><i class="fa fa-book"></i> Registro</a>
+            </div>
+            <!-- Para abrir el sidebar en pantallas chicas -->
+            <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium"
+                onclick="w3_open()">
+                <i class="fa fa-bars"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Sidebar para pantallas chicas -->
+    <nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large"
+        style="display:none" id="mySidebar">
+        <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Close
+            ×</a>
+        <a onclick="document.getElementById('id01').style.display='block'" class="w3-bar-item w3-button">abre modal</a>
+        <a href="catalogo" onclick="w3_close()" class="w3-bar-item w3-button">Catalogo</a>
+        <a href="contacto" onclick="w3_close()" class="w3-bar-item w3-button">Contacto</a>
+        <a href="ingreso" onclick="w3_close()" class="w3-bar-item w3-button"><i class="fa fa-sign-in"></i> Ingreso</a>
+        <a href="registro" onclick="w3_close()" class="w3-bar-item w3-button"><i class="fa fa-book"></i> Registro</a>
+    </nav>
+
+
+    <!-- The Modal -->
+    <div id="id01" class="w3-modal">
+        <div class="w3-modal-content">
+
+            <header class="w3-container w3-light-grey">
+                <span onclick="document.getElementById('id01').style.display='none'" light
+                    class="w3-button w3-display-topright">&times;</span>
+                <h2>Contactar</h2>
+                <i class="fa fa-envelope-open 4X " aria-hidden="true"></i>
+            </header>
+
+            <div formulario class="w3-container" action="/action_page.php" class="w3-section">
+                <label for="nombre">Nombre</label>
+                <input id="nombre" class="w3-input w3-border w3-margin " type="text" name="nombre" obligatorio>
+                <label for="apellido">Apellido</label>
+                <input id="apellido" class="w3-input w3-border w3-margin" type="text" name="apellido" obligatorio>
+                <label for=" correo electronico ">Correo electronico</label>
+                <input id="correo electronico" class="w3-input w3-border w3-margin" type="text"name="correo electronico" obligatorio>
+                <label for="comentario">agregar comentario:</label>
+                <textarea id="comentario" name="comentario" class=" w3-bar w3-panel"></textarea>
+            </div>
+            <br><br>
+            <input type="button" value="Enviar" class=" w3-green">
+            <input type="button" value="cancelar" class=" w3-red">
+        </div>
+    </div>
+    </div>
+    <!-- Div del cuerpo de la página -->
+    <div class="w3-container w3-center w3-padding-64 w3-border w3-round-large w3-yellow w3-hover-text-green w3-panel
+    " style="min-height: 500px;" id="home">
+        <h1>Cotizaciones solicitadas</h1>
+
+        <p class="w3-left">nombre y apellido </p>
+        <p class="w3-right">costo total</p>
+
+        <table style="width:1000px" class="w3-table-all w3-border">
+            <tr>
+                <th>productos</th>
+                <th>costo unitario</th>
+            </tr>
+            <tr>
+                <td>11</td>
+                <td>$00</td>
+            </tr>
+            <tr>
+                <td>22</td>
+                <td>$00</td>
+            </tr>
+        </table>
+        <br>
+
+        <br>
+        <a onclick="document.getElementById('id01').style.display='block'" class="w3-bar-item w3-button">contactar</a>
+
+    </div>
+
+    <!-- Pié de la página -->
+    <footer class="w3-padding-64 w3-light-grey w3-small w3-center" id="footer">
+        <div class="w3-row-padding">
+            <div class="w3-col s4">
+                <h4>Contacto</h4>
+                <form action="/action_page.php" target="_blank">
+                    <p><input class="w3-input w3-border w3-round-large" type="text" placeholder="Nombre" name="Name"
+                            required></p>
+                    <p><input class="w3-input w3-border w3-round-large" type="text" placeholder="Correo" name="Email"
+                            required></p>
+                    <p><input class="w3-input w3-border w3-round-large" type="text" placeholder="Asunto" name="Subject"
+                            required></p>
+                    <p><input class="w3-input w3-border w3-round-large" type="text" placeholder="Mensaje" name="Message"
+                            required></p>
+                    <button type="submit" class="w3-button w3-block w3-black w3-round-large"><i
+                            class="fa fa-paper-plane" aria-hidden="true"></i> Enviar</button>
+                </form>
+            </div>
+
+            <div class="w3-col s4">
+                <h4>Acerca</h4>
+                <p><a href="catalogo">Catalogo</a></p>
+                <p><a href="contacto">Contacto</a></p>
+                <p><a href="ingreso">Ingreso</a></p>
+                <p><a href="registro">Registro</a></p>
+            </div>
+
+            <div class="w3-col s4 w3-justify">
+                <h4>Visitanos</h4>
+                <p><i class="fa fa-fw fa-map-marker"></i> Articulos de seguridad</p>
+                <p><i class="fa fa-fw fa-phone"></i> 0044123123</p>
+                <p><i class="fa fa-fw fa-envelope"></i> ex@mail.com</p>
+                <br>
+                <i class="fa fa-facebook-official w3-hover-opacity w3-large"></i>
+                <i class="fa fa-instagram w3-hover-opacity w3-large"></i>
+                <i class="fa fa-snapchat w3-hover-opacity w3-large"></i>
+                <i class="fa fa-pinterest-p w3-hover-opacity w3-large"></i>
+                <i class="fa fa-twitter w3-hover-opacity w3-large"></i>
+                <i class="fa fa-linkedin w3-hover-opacity w3-large"></i>
+                <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank"
+                        class="w3-hover-text-green">w3.css</a></p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Modal Image Gallery
+        function onClick(element) {
+            document.getElementById("img01").src = element.src;
+            document.getElementById("modal01").style.display = "block";
+            var captionText = document.getElementById("caption");
+            captionText.innerHTML = element.alt;
+        }
+
+
+        // Toggle between showing and hiding the sidebar when clicking the menu icon
+        var mySidebar = document.getElementById("mySidebar");
+
+        function w3_open() {
+            if (mySidebar.style.display === 'block') {
+                mySidebar.style.display = 'none';
+            } else {
+                mySidebar.style.display = 'block';
+            }
+        }
+
+        // Close the sidebar with the close button
+        function w3_close() {
+            mySidebar.style.display = "none";
+        }
+    </script>
+
+</body>
+
+</html>

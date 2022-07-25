@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <head th:insert="fragments/head :: head">
+
+    <body>
+        <!-- Barra de navegación (anclado al inicio) -->
+        <div th:insert="fragments/header :: header"></div>
+
+
+        <!-- Div del cuerpo de la página -->
+        <div class="w3-container w3-display-container w3-padding-64" style="min-height: 40vw;"
+             id="home">
+            <div class="w3-display-middle" style="min-width: 320px; max-width: 480px;">
+                <h4> <strong>Recuperación de contraseña:</strong> </h4>
+                <form th:action="@{/usuario/modifContrasenia}" method="POST">
+
+                    <p>Ingrese la nueva contraseña</p>
+                    
+                    <input class="w3-input w3-animate-input" name="ID" type="hidden" th:value="${ID}">
+
+                    <Label for="contra1"> Contraseña </Label>
+                    <input class="w3-input w3-animate-input" type="password" id="contra1" oninput="validarContras()"
+                    required name="contrasenia"><br>
+
+                    <Label for="contra2"> Vuelva a tipear su contraseña. por favor </Label>
+                    <input class="w3-input w3-animate-input" type="password" id="contra2" oninput="validarContras()"
+                    required name="contrasenia1"><br>
+
+                    <input class="w3-button w3-button w3-light-grey w3-hover-green w3-round-xxlarge" type="submit" 
+                    value="Guardar">
+                </form>
+            </div>
+        </div>
+        
+        
+
+        <!-- Pié de la página -->
+        <footer th:insert="fragments/footer :: footer" class="w3-padding-64 w3-light-grey w3-small w3-center" id="footer">
+        </footer>
+
+        <script>
+            function validarContras() {
+                let contra1 = document.getElementById("contra1");
+                let contra2 = document.getElementById("contra2");
+                let enviar = document.getElementById("enviar");
+                console.log({contra1: contra1.value, contra2: contra2.value})
+                if (contra1.value != contra2.value) {
+                    contra1.classList.remove("w3-green")
+                    contra2.classList.remove("w3-green")
+                    contra1.classList.add("w3-red")
+                    contra2.classList.add("w3-red")
+                    enviar.disabled = true;
+
+                } else {
+                    contra1.classList.remove("w3-red")
+                    contra2.classList.remove("w3-red")
+                    contra1.classList.add("w3-green")
+                    contra2.classList.add("w3-green")
+                    enviar.disabled = false;
+                }
+            }
+
+        </script>
+
+    </body>

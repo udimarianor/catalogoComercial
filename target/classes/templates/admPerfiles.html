@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <head th:insert="fragments/head :: head">
+
+    <body>
+        <!-- Barra de navegación (anclado al inicio) -->
+        <div th:insert="fragments/header :: header"></div>
+
+
+        <!-- Div del cuerpo de la página -->
+        <div class="w3-container w3-display-container w3-padding-64" style="min-height: 40vw;"
+             id="home">
+            <div class="w3-display-middle" style="min-width: 320px; max-width: 480px;">
+
+                <h4> <strong>Editar rol de usuario</strong> </h4>
+
+                <form th:action="@{/usuario/modifRol}" method="POST" id="modifRol">
+
+                    <p>Seleccione el usuario:</p>
+
+                    <select class="w3-input w3-animate-input" id="usuario" name="usuario" required>
+                        <option th:each="u : ${usuarios}" th:text="${u.usuario}" th:value="${u.id}"></option>
+                    </select><br>
+                    
+                    <p>Ahora el rol que desea darle</p>
+                    <select class="w3-input w3-animate-input" id="roles" name="rol" required>
+                        <option th:value="${1}">Administrador</option>
+                        <option th:value="${2}">Vendedor</option>
+                        <option th:value="${3}">Cliente</option>
+                    </select><br>
+
+                    <input class="w3-button w3-button w3-light-grey w3-hover-green w3-round-xxlarge" type="submit" 
+                    value="Guardar">
+
+                </form>
+            </div>
+        </div>
+
+
+
+        <!-- Pié de la página -->
+        <footer th:insert="fragments/footer :: footer" class="w3-padding-64 w3-light-grey w3-small w3-center" id="footer">
+        </footer>
+
+
+
+    </body>

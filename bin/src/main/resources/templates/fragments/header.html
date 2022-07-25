@@ -1,0 +1,43 @@
+<div th:fragment="header"> 
+    <!-- Barra de navegación (anclado al inicio) -->
+    <div class="w3-top">
+        <div class="w3-bar w3-white w3-card" id="myNavbar">
+            <a th:href="@{/}" class="w3-bar-item w3-button w3-wide">Imagen logo</a>
+            <!-- Enlaces de la derecha -->
+            <div class="w3-right w3-hide-small">
+                <!-- <a onclick="document.getElementById('id01').style.display='block'" class="w3-bar-item w3-button">abre 
+                    modal</a> -->
+                
+                
+                
+                <a style="text-transform: uppercase;" class="w3-bar-item w3-button" sec:authorize="isAuthenticated()" th:text="${session.usuariosession.nombre}"></a>
+                <a class="w3-bar-item w3-button" sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a>
+                <a sec:authorize="!isAuthenticated()" th:href="@{/usuario}" class="w3-bar-item w3-button"><i class="fa fa-sign-in"></i> Ingreso</a>
+                <a sec:authorize="!isAuthenticated()" th:href="@{/usuario/registro}" class="w3-bar-item w3-button"><i class="fa fa-book"></i> Registro</a>
+                <a th:href="@{/catalogo}" class="w3-bar-item w3-button">Catalogo</a>
+                <a th:href="@{/contacto}" class="w3-bar-item w3-button">Contacto</a>
+                
+            </div>
+
+            <!-- Para abrir el sidebar en pantallas chicas -->
+            <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium"
+               onclick="w3_open()">
+                <i class="fa fa-bars"></i>
+            </a>
+        </div>
+    </div>
+
+
+
+
+    <!-- Sidebar para pantallas chicas -->
+    <nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large"
+         style="display:none" id="mySidebar">
+        <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Close
+            ×</a>
+        <a href="catalogo" onclick="w3_close()" class="w3-bar-item w3-button">Catalogo</a>
+        <a href="contacto" onclick="w3_close()" class="w3-bar-item w3-button">Contacto</a>
+        <a th:href="@{/usuario}" onclick="w3_close()" class="w3-bar-item w3-button"><i class="fa fa-sign-in"></i> Ingreso</a>
+        <a th:href="@{/usuario/registro}" onclick="w3_close()" class="w3-bar-item w3-button"><i class="fa fa-book"></i> Registro</a>
+    </nav>
+</div>

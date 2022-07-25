@@ -1,0 +1,193 @@
+.html-login{
+    margin: 0;
+    padding: 0;
+    background-image: url(../img/fotito.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: sans-serif;
+    height: 100vh;    
+}
+
+.login-box{
+    width: 320px;
+    height: 70%;
+    background: #000;
+    color:#fff;
+    top: 55%;
+    left: 15%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    padding-top: 50px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.login-box .avatar{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    position: absolute;
+    top: -50px;
+    left: 110px;
+}
+
+.login-box h1{
+    margin: 0%;
+    padding: 0%;
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+.login-box label{
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    display: block;    
+}
+
+.login-box input{
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.login-box input[type= "text"] ,
+.login-box input[type ="password"] {
+    border: none;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    outline: none;
+    height: 40px;
+    color: #fff;
+    font-size: 16px;    
+}
+
+.login-box input[type= "submit"] {
+    border: none;
+    outline: none;
+    height: 40px;
+    background: rgba(78, 78, 200, 0.63);
+    color: #fff;
+    font-size: 18px;
+    border-radius: 20px;
+}
+
+.login-box a{
+    text-decoration: none;
+    font-size: 12px;
+    line-height: 20px;
+    color: darkgray;    
+}
+
+.login-box a:hover{
+    color: #fff;
+    text-decoration: underline;
+}
+
+.alert-red {
+  padding: 20px;
+  background-color: #f44336; /* Red */
+  color: white;
+  margin-bottom: 15px;
+}
+
+.alert-green {
+  padding: 20px;
+  background-color: #04AA6D; /* Red */
+  color: white;
+  margin-bottom: 15px;
+}
+
+/* The close button */
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+  color: black;
+}
+
+#modifRol {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.catalogo {
+	display: flex;
+	flex-direction: row;
+}
+
+.botonesCatalogo{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.categorias {
+	padding-top: 75px;
+	flex-basis: 20vw;
+	background: gray;
+}
+
+.categorias a{
+	display: block;
+	margin: 3px auto;
+	text-align: center;
+	text-decoration: none;
+}
+
+.catalog-main {
+	padding: 75px 0px 25px 0px;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 30px;
+	
+}
+
+.seccion {
+	padding-top: 75px;
+	width: 100%;
+}
+
+.prdDetalle {
+	display: flex;
+	flex-direction: row;
+}
+
+.prdImg {
+	padding: 75px 25px 50px 125px;
+	flex-basis: 60%;
+}
+
+.prdImg img {
+	width: 100%;
+	border-radius: 15px;
+}
+
+.prdDescrip {
+	padding-top: 75px;
+	width: 100%;
+}
+
+aside a:hover{
+	background: lightgray;
+	font-weight: bold;
+}
+

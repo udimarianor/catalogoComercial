@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+    <head th:insert="fragments/head :: head"></head>
+
+
+    <body>
+
+        <div th:insert="fragments/header :: header"></div>
+
+        <!-- The Modal -->
+
+        <!-- <div id="id01" class="w3-modal"> 
+            <div class="w3-modal-content">
+    
+                <header class="w3-container w3-light-grey">
+                    <span onclick="document.getElementById('id01').style.display='none'"
+                        class="w3-button w3-display-topright">&times;</span>
+                    <h2>Modal Header</h2>
+                </header>
+    
+                <div class="w3-container">
+                    <p>Some text..</p>
+                    <p>Some text..</p>
+                </div>
+                
+        <footer class="w3-container w3-light-grey">
+            <p>Modal Footer</p>
+        </footer>
+    
+        </div>
+        </div>
+        -->
+
+
+        <!-- Div del cuerpo de la página 
+        <div class="w3-container w3-display-container w3-padding-64" style="min-height: 1050px; margin-top: 50px;" id="home">
+            <div class="w3-display-middle" style="min-width: 320px; max-width: 480px;">
+                
+                <h1>Bienvenido a nuestro registro de Usuarios !</h1> <br><br>
+                
+                <form th:action="@{/registroUsuario/guardar}" method="POST">
+
+                    <label for="nombre"> Nombre</label>
+                    <input class="w3-input " type="text" style="width:135px" required name="nombre" id="nombre" ><br>
+
+                    <label for="apellido"> Apellido</label>
+                    <input class="w3-input" type="text" style="width:135px" required name="apellido" id="apellido"><br>
+
+                    <label for="nombreUsuario"> Nombre de usuario</label>
+                    <input class="w3-input " type="text" style="width:135px" required name="usuario" id="nombreUsuario"><br>
+
+                    <Label for="contra1"> Contraseña </Label>
+                    <input class="w3-input " type="password" id="contra1" oninput="validarContras()"
+                           style="width:135px" required name="contrasenia"><br>
+
+                    <Label for="contra2"> Vuelva a tipear su contraseña. por favor </Label>
+                    <input class="w3-input " type="password" id="contra2" oninput="validarContras()"
+                           style="width:135px" required name="contrasenia1"><br>
+
+                    <label for="email">Correo electrónico</label>
+                    <input class="w3-input " type="email" style="width:135px" required name="correo" id="email"><br>
+
+
+
+                    <input class="w3-check" type="checkbox" id="confir" required>
+                    <label for="confir"> No soy un robot </label> <br> <br> <br>
+
+                    <button class="w3-bar-item w3-button w3-light-grey  w3-hover-red w3-btn w3-round-xxlarge">Cancelar</button> <br> <br>
+
+                    <input class="w3-bar-item w3-button w3-light-grey w3-hover-green w3-btn w3-round-xxlarge" value="Guardar usuario"  id="enviar" 
+                            type="submit" >
+                </form>
+            </div>
+        </div>
+        -->
+
+        <!-- Div del cuerpo de la página -->
+        <div class="w3-container w3-display-container w3-padding-64" style="min-height: 65vw; margin-top: 50px; " id="home">
+            <div class="w3-display-middle" style="min-width: 320px; max-width: 480px;">
+
+
+                <form th:action="@{/usuario/guardar}" method="POST">
+
+                    <br th:if="${error != null}">
+                    <div th:if="${error != null}" class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong th:if="${error != null}" th:text="${error}"></strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+
+                    <label for="nombre"> Nombre</label>
+                    <input class="w3-input w3-animate-input" type="text" style="width:135px" required name="nombre"><br>
+
+                    <label for="apellido"> Apellido</label>
+                    <input class="w3-input w3-animate-input" type="text" style="width:135px" required name="apellido"><br>
+
+                    <label for="nombreUsuario"> Nombre de usuario</label>
+                    <input class="w3-input w3-animate-input" type="text" style="width:135px" required name="usuario"><br>
+
+                    <Label for="contra1"> Contraseña </Label>
+                    <input class="w3-input w3-animate-input" type="password" id="contra1" oninput="validarContras()"
+                           style="width:135px" required name="contrasenia"><br>
+
+                    <Label for="contra2"> Vuelva a tipear su contraseña. por favor </Label>
+                    <input class="w3-input w3-animate-input" type="password" id="contra2" oninput="validarContras()"
+                           style="width:135px" required name="contrasenia1"><br>
+
+                    <label for="email">Correo electrónico</label>
+                    <input class="w3-input w3-animate-input" type="email" style="width:135px" required name="correo"><br>
+
+
+
+                    <input class="w3-check" type="checkbox" required>
+                    <label for="confir"> No soy un robot </label> <br> <br> <br>
+
+                    <input class="w3-bar-item w3-button w3-light-grey w3-btn w3-round-xxlarge" value="Guardar usuario"
+                           type="submit">
+                </form>
+            </div>
+        </div>
+
+
+
+        <!-- Pié de la página -->
+        <footer th:insert="fragments/footer :: footer" class="w3-padding-64 w3-light-grey w3-small w3-center" id="footer">
+        </footer>
+
+
+
+        <script>
+            function validarContras() {
+                let contra1 = document.getElementById("contra1");
+                let contra2 = document.getElementById("contra2");
+                let enviar = document.getElementById("enviar");
+                console.log({contra1: contra1.value, contra2: contra2.value})
+                if (contra1.value != contra2.value) {
+                    contra1.classList.remove("w3-green")
+                    contra2.classList.remove("w3-green")
+                    contra1.classList.add("w3-red")
+                    contra2.classList.add("w3-red")
+                    enviar.disabled = true;
+
+                } else {
+                    contra1.classList.remove("w3-red")
+                    contra2.classList.remove("w3-red")
+                    contra1.classList.add("w3-green")
+                    contra2.classList.add("w3-green")
+                    enviar.disabled = false;
+                }
+            }
+
+        </script>
+
+    </body>
+
+    <script>
+        function validarContras() {
+            let contra1 = document.getElementById("contra1");
+            let contra2 = document.getElementById("contra2");
+            // terminar MAÑANAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+            console.log({contra1: contra1.value, contra2: contra2.value})
+            if (contra1.value != contra2.value) {
+                contra1.classList.remove("w3-green")
+                contra2.classList.remove("w3-green")
+                contra1.classList.add("w3-red")
+                contra2.classList.add("w3-red")
+
+            } else {
+                contra1.classList.remove("w3-red")
+                contra2.classList.remove("w3-red")
+                contra1.classList.add("w3-greem")
+                contra2.classList.add("w3-green")
+            }
+        }
+
+    </script>
+
+
+</body>
+
+
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <head th:insert="fragments/head :: head"></head>
+
+    <body>
+
+        <header th:insert="fragments/header :: header"></header>
+        <main class="catalogo">
+
+            <!-- ${#httpServletRequest.requestURI}-->
+
+            <aside class="categorias">
+                <!--a  th:each="categoria : ${categorias}" th:href="@{'/catalogo/cat?categoria=' + ${categoria} + '&keyword=apa'}" th:text=${categoria}>Categoria</a><br--> 
+                <a class="w3-hover-grey" style=" color: white; align-content: center; text-transform: uppercase; " 
+                th:with="urlBuilder=${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder).fromCurrentRequest()}" 
+                th:each="categoria : ${categorias}" th:href= "@{${urlBuilder.replaceQueryParam('categoria', categoria).toUriString()}}" 
+                th:text=${categoria}>Categoria</a><br>
+
+            </aside>
+
+
+
+
+            <section class="seccion">  	
+
+                <div class="botonesCatalogo">
+                    <form style = "text-align: center; " th:action="@{/catalogo/}" method="get">
+                        <input type="text" class="w3-large" name="keyword" th:value="${keyword}"  placeholder="Ingrese nombre o detalle del producto..." size="50" >
+                        <button type="submit" class="btn btn-info w3-large" style=" cursor: pointer; " >Buscar</button>			  	
+                    </form>
+
+                    <a type="submit" sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_VENDEDOR')" th:href="@{/producto}"
+                    class="w3-button w3-blue w3-hover-lightgrey w3-medium w3-round" >Agregar producto
+                    </a>			  	
+                </div>
+
+
+
+                <div class="catalog-main">
+
+                    <div class="w3-card-4 w3-dark-grey w3-round-large prod-catalog" style="width:25%" th:each="producto : ${productos}">
+                        <div class="w3-container w3-center">
+                            <h3 th:text="${producto.descripcion}">Nombre producto</h3>
+                            <img th:src="${producto.foto}"  alt="Foto producto" style="width:80%; max-width:150px;">
+                            <br>
+                            <small th:text="'$' + ${producto.precio}">Precio producto</small>
+                            <p th:text="${producto.detalle}">Descripción del producto</p>
+                            <div class="w3-section botonesCatalogo">
+                                <form th:action="@{/producto/}+${producto.Id}" method="POST">
+                                    <button class="w3-button w3-green w3-round">+ Info</button>
+                                </form>
+                                <a sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_VENDEDOR')"
+                                th:href="@{/producto/modifProducto/}+${producto.Id}" method="GET" 
+                                class="w3-button w3-blue w3-round">Editar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Pié de la página -->
+        <footer th:insert="fragments/footer :: footer" class="w3-padding-64 w3-light-grey w3-small w3-center" id="footer">
+        </footer>
+    </body>
+</html>

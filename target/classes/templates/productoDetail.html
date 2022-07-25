@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:insert="fragments/head :: head"></head>
+
+<body>
+
+<div th:insert="fragments/header :: header"></div>
+
+<div class="prdDetalle">
+	<div class="prdImg">
+		<a th:href="@{/catalogo}">Volver</a>
+		<img th:src="${producto.foto}"></img>
+	</div>
+	<div class="prdDescrip">
+		<br><br>
+		<h2 th:text="${producto.descripcion}"></h2><br>
+		<h1 th:text="'$ ' + ${producto.precio}"></h1><br>
+		<h3 th:text="'Marca: ' + ${producto.empresa}"></h3>
+		<p th:text="${producto.detalle}"></p><br>		
+	</div>
+</div>
+
+<footer th:insert="fragments/footer :: footer" class="w3-padding-64 w3-light-grey w3-small w3-center" id="footer">
+</footer>
+
+</body>
+</html>
+    

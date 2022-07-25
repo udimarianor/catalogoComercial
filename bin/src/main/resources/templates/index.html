@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="fragments/head :: head"></head>
+
+<body>
+
+    <div th:insert="fragments/header :: header"></div>
+
+
+    <!-- The Modal -->
+    <div id="id01" class="w3-modal">
+        <div class="w3-modal-content">
+
+            <header class="w3-container w3-light-grey">
+                <span onclick="document.getElementById('id01').style.display='none'" light
+                    class="w3-button w3-display-topright">&times;</span>
+                <h2>Modal Header</h2>
+            </header>
+
+            <div class="w3-container">
+                <p>Some text..</p>
+                <p>Some text..</p>
+            </div>
+
+            <footer class="w3-container w3-light-grey">
+                <p>Modal Footer</p>
+            </footer>
+
+        </div>
+    </div>
+
+    <!-- SlideShow - Carousel -->
+    <title>W3.CSS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        .mySlides {display: none}
+        .w3-left, .w3-right, .w3-badge {cursor: pointer}
+        .w3-badge {height: 13px;width: 13px;padding: 0}
+    </style>
+    <body>
+        
+        <div class="w3-content w3-display-container" style=" max-width:800px; margin-top: 8vw; ">
+            <img class="mySlides" th:src="@{/img/workers.jpeg}" style=" height: 20vw; ">
+            <img class="mySlides" th:src="@{/img/PPE.jpg}" style=" height: 20vw; ">
+            <img class="mySlides" th:src="@{/img/ppe-industrial.jpg}" style=" height: 20vw; ">
+            <div class="w3-center w3-container w3-section w3-large w3-text-white w3-display-bottommiddle" style="width:100%">
+                <div class="w3-left w3-hover-text-khaki" onclick="plusDivs(-1)">&#10094;</div>
+                <div class="w3-right w3-hover-text-khaki" onclick="plusDivs(1)">&#10095;</div>
+                <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(1)"></span>
+                <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(2)"></span>
+                <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(3)"></span>
+            </div>
+        </div>
+        <script>
+            var slideIndex = 1;
+            showDivs(slideIndex);
+
+            function plusDivs(n) {
+                showDivs(slideIndex += n);
+            }
+
+            function currentDiv(n) {
+                showDivs(slideIndex = n);
+            }
+
+            function showDivs(n) {
+                var i;
+                var x = document.getElementsByClassName("mySlides");
+                var dots = document.getElementsByClassName("demo");
+                if (n > x.length) { slideIndex = 1 }
+                if (n < 1) { slideIndex = x.length }
+                for (i = 0; i < x.length; i++) {
+                    x[i].style.display = "none";
+                }
+                for (i = 0; i < dots.length; i++) {
+                    dots[i].className = dots[i].className.replace(" w3-white", "");
+                }
+                x[slideIndex - 1].style.display = "block";
+                dots[slideIndex - 1].className += " w3-white";
+            }
+        </script>
+        <script>
+            var myIndex = 0;
+            carousel();
+            
+            function carousel() {
+              var i;
+              var x = document.getElementsByClassName("mySlides");
+              for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";  
+              }
+              myIndex++;
+              if (myIndex > x.length) {myIndex = 1}    
+              x[myIndex-1].style.display = "block";  
+              setTimeout(carousel, 2500); // Change image every 2 seconds
+            }
+            </script>
+    </body>
+    </div>
+
+    <header class="bgimg-1 w3-display-container w3-grayscale-min" id="home">
+        <div class="w3-display-left w3-text-black" style="padding:48px">
+            <span class="w3-jumbo w3-hide-small">Cuid&aacute; a tu personal con nosotros</span><br>
+            <span class="w3-xxlarge w3-hide-large w3-hide-medium">Cuid&aacute; a tu personal con nosotros</span><br>
+            <span class="w3-large">Protejé a tus recursos más valiosos con nuestros productos.</span>
+            <p><a href="catalogo"
+                    class="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off">Acced&eacute;
+                    al cat&aacute;logo</a></p>
+        </div>
+        <div class="w3-display-bottomleft w3-text-grey w3-large" style="padding:24px 48px">
+            <i class="fa fa-facebook-official w3-hover-opacity"></i>
+            <i class="fa fa-instagram w3-hover-opacity"></i>
+            <i class="fa fa-snapchat w3-hover-opacity"></i>
+            <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+            <i class="fa fa-twitter w3-hover-opacity"></i>
+            <i class="fa fa-linkedin w3-hover-opacity"></i>
+        </div>
+    </header>
+
+    <!-- Acerca -->
+    <div class="w3-container" style="padding:128px 16px" id="about">
+        <h3 class="w3-center">¿Quienes somos?</h3>
+        <p class="w3-center w3-large">Somos una empresa proveedora de elementos de seguridad.<br>Contamos con
+            protecci&oacute;n:</p>
+        <div class="w3-row-padding w3-center" style="margin-top:64px">
+            <div class="w3-quarter">
+                <i class="fa fa-eye w3-margin-bottom w3-jumbo w3-center"></i>
+                <p class="w3-large">Visual</p>
+                <p>Contamos con una amplia gama de protecci&oacute;n visual, tanto universales como dedicadas.</p>
+            </div>
+            <div class="w3-quarter">
+                <i class="fa fa-hand-paper-o w3-margin-bottom w3-jumbo"></i>
+                <p class="w3-large">Extremidades</p>
+                <p>Las protecciones para extremidades pueden ser para impactos, cortes o qu&iacute;micas.</p>
+            </div>
+            <div class="w3-quarter">
+                <i class="fa fa-deaf w3-margin-bottom w3-jumbo"></i>
+                <p class="w3-large">Auditiva</p>
+                <p>Una gran variedad de productos de protecci&oacute;n auditiva, in-ear y orejeras</p>
+            </div>
+            <div class="w3-quarter">
+                <i class="fa fa-fire-extinguisher w3-margin-bottom w3-jumbo"></i>
+                <p class="w3-large">General</p>
+                <p>Además contamos con elementos de seguriodad y protecci&oacute;n general</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="w3-container w3-dark-grey" >
+        
+        <div class="" align="center">
+            <form class="w3-border w3-margin" style="min-width: 320px; max-width: 480px;">
+                
+                <label for="browser">Choose your browser from the list:</label>
+                <input class="w3-input" list="browsers" name="browser" id="browser">
+
+                <datalist id="browsers">
+                    <option value="Edge">
+                    <option value="Firefox">
+                    <option value="Chrome">
+                    <option value="Opera">
+                    <option value="Safari">
+                </datalist>
+                
+
+
+            </form>
+        </div>
+
+    <div class="w3-container w3-center w3-dark-grey" style="padding:128px 16px">
+
+    </div>
+
+    <!-- Div del cuerpo de la página -->
+    <!--
+    <div class="w3-container w3-center w3-padding-64" style="min-height: 500px;" id="home">
+        <h1>Acerca de nosotros</h1>
+        <p>Texto de la p&aacute;gina</p>
+        <h5>Pie de nuestro div</h5>
+    </div>
+    -->
+    <!-- Pié de la página -->
+    <footer th:insert="fragments/footer :: footer" class="w3-padding-64 w3-light-grey w3-small w3-center" id="footer">
+    </footer>
+    <script>
+        // Modal Image Gallery
+        function onClick(element) {
+            document.getElementById("img01").src = element.src;
+            document.getElementById("modal01").style.display = "block";
+            var captionText = document.getElementById("caption");
+            captionText.innerHTML = element.alt;
+        }
+
+
+        // Toggle between showing and hiding the sidebar when clicking the menu icon
+        var mySidebar = document.getElementById("mySidebar");
+
+        function w3_open() {
+            if (mySidebar.style.display === 'block') {
+                mySidebar.style.display = 'none';
+            } else {
+                mySidebar.style.display = 'block';
+            }
+        }
+
+        // Close the sidebar with the close button
+        function w3_close() {
+            mySidebar.style.display = "none";
+        }
+
+
+    </script>
+
+
+</body>
+
+</html>

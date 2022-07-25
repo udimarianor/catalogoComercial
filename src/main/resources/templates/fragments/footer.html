@@ -1,0 +1,52 @@
+<footer th:fragment="footer">
+    <div class="w3-row-padding">
+        <div id="contacto" class="w3-col s4">
+            <h4>Contacto</h4>
+            <form th:action="@{/contacto/enviar}" method="POST">
+
+                <p><input class="w3-input w3-border w3-round-large" type="text" th:placeholder="Nombre" name="nombre" required
+                          sec:authorize="isAuthenticated()" th:value="${session.usuariosession.nombre}"></p>
+                <p><input class="w3-input w3-border w3-round-large" type="text" th:placeholder="Nombre" name="nombre" required
+                          sec:authorize="!isAuthenticated()"></p>
+                
+                <!-- <p><input class="w3-input w3-border w3-round-large" type="text" th:placeholder="Nombre" name="nombre" required
+                th:if="${not #strings.isEmpty(session.usuariosession.nombre)}" th:value="${session.usuariosession.nombre}"></p> -->
+                
+                
+                <p><input class="w3-input w3-border w3-round-large" type="text" th:placeholder="Correo" name="correo" required
+                          sec:authorize="isAuthenticated()" th:value="${session.usuariosession.correo}"></p>
+                <p><input class="w3-input w3-border w3-round-large" type="text" th:placeholder="Correo" name="correo" required
+                          sec:authorize="!isAuthenticated()"></p>
+                
+    
+                <p><input class="w3-input w3-border w3-round-large" type="text" placeholder="Asunto" name="asunto" required></p>
+                <p><input class="w3-input w3-border w3-round-large" type="text" maxlength="500" placeholder="Mensaje" name="mensaje" required></p>
+                <button type="submit" class="w3-button w3-block w3-black w3-round-large"><iclass="fa fa-paper-plane" aria-hidden="true"></i> Enviar</button>
+            </form>
+        </div>
+
+        <div class="w3-col s4">
+            <h4>Acerca</h4>
+            <p><a th:href="@{/catalogo}">Catalogo</a></p>
+            <p><a th:href="@{/}">Contacto</a></p>
+            <p><a th:href="@{/usuario}">Ingreso</a></p>
+            <p><a th:href="@{/usuario/registro}">Registro</a></p>
+        </div>
+
+        <div class="w3-col s4 w3-justify">
+            <h4>Visitanos</h4>
+            <p><i class="fa fa-fw fa-map-marker"></i> Articulos de seguridad</p>
+            <p><i class="fa fa-fw fa-phone"></i> 0044123123</p>
+            <p><i class="fa fa-fw fa-envelope"></i> ex@mail.com</p>
+            <br>
+            <i class="fa fa-facebook-official w3-hover-opacity w3-large"></i>
+            <i class="fa fa-instagram w3-hover-opacity w3-large"></i>
+            <i class="fa fa-snapchat w3-hover-opacity w3-large"></i>
+            <i class="fa fa-pinterest-p w3-hover-opacity w3-large"></i>
+            <i class="fa fa-twitter w3-hover-opacity w3-large"></i>
+            <i class="fa fa-linkedin w3-hover-opacity w3-large"></i>
+            <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank"
+                             class="w3-hover-text-green">w3.css</a></p>
+        </div>
+    </div>
+</footer>
